@@ -1,0 +1,101 @@
+{
+	// Place your snippets for scss here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"ramez-table-expand-row-style": {
+		"prefix": "ramez-table-expand-row",
+		"body": [
+		  "mat-row.table-detail-row {",
+		  "  min-height: auto !important;",
+		  "  border-bottom: 0 !important;",
+		  "  background-color: #f9f9f9;",
+		  "",
+		  "  td {",
+		  "    padding: 0px !important;",
+		  "  }",
+		  "",
+		  "  mat-cell {",
+		  "    text-align: unset;",
+		  "    padding: 0 !important;",
+		  "  }",
+		  "}",
+		  "",
+		  "mat-row.table-element-row:not(.table-expanded-row):hover {",
+		  "  background: whitesmoke;",
+		  "}",
+		  "",
+		  "mat-row.table-element-row:not(.table-expanded-row):active {",
+		  "  background: #efefef;",
+		  "}",
+		  "",
+		  ".table-element-row td {",
+		  "  border-bottom-width: 0;",
+		  "}",
+		  "",
+		  ".table-element-detail {",
+		  "  overflow: hidden;",
+		  "}",
+		  "",
+		  ".expanded-contents {",
+		  "  padding: 0.6rem 0.3rem;",
+		  "}"
+		],
+		"description": "ramez-table-expand-row-style"
+	  }, 
+	  "ramez-filters-form-style": {
+		"prefix": "ramez-filters-form-style",
+		"body": [
+		  "mat-card {",
+		  "  .mat-card-content {",
+		  "    margin-bottom: 0;",
+		  "  }",
+		  "",
+		  "  mat-card-footer {",
+		  "    margin: 0 0 -16px 0;",
+		  "",
+		  "    mat-card-actions {",
+		  "      margin: 0;",
+		  "",
+		  "      button {",
+		  "        border-radius: 20px;",
+		  "      }",
+		  "    }",
+		  "  }",
+		  "}",
+		  "",
+		  "::ng-deep .mat-menu-panel {",
+		  "  max-width: none !important;",
+		  "",
+		  "  .mat-menu-content:not(:empty) {",
+		  "    padding: 0;",
+		  "  }",
+		  "",
+		  "  .filter-wrapper {",
+		  "    min-width: 300px !important;",
+		  "    max-width: 350px !important;",
+		  "  }",
+		  "}"
+		],
+		"description": "ramez-filters-form-style"
+	  }, 
+	  "ramez-mat-column-width": {
+		"prefix": "ramez-mat-column-size",
+		"body": [
+		  ".mat-column-${1:columnName} {",
+		  "  flex: 0 0 75px;",
+		  "}"
+		],
+		"description": "ramez-mat-column-size"
+	  }
+}

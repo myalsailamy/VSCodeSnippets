@@ -1,0 +1,85 @@
+{
+	// Place your snippets for csharp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// },
+	"ramez-change-status-controller-function": {
+		"prefix": "ramez-change-status-controller-function",
+		"body": [
+		  "[HttpPut(\"{id}/EnabledStatuses\")]",
+		  "[Authorize(Roles = \"Administrator,Admin\")]",
+		  "[Authorize(Policy = Permissions.${1:SingularEntityNameUpperCase}.Edit)]",
+		  "public async Task<IActionResult> ChangeEnabledStatus(Guid id, CancellationToken cancellationToken = default)",
+		  "{",
+		  "    ErrorOr<bool> updatedResult = await _mediator.Send(new Change${1/(.)/${1:/capitalize}/}EnabledStatusCommand(id), cancellationToken);",
+		  "    return updatedResult.Match(",
+		  "       result => Ok(new ApiResponse<bool>(result)),",
+		  "       errors => Problem(errors)",
+		  "   );",
+		  "}"
+		],
+		"description": "ramez-change-status-controller-function"
+	  },
+	  "ramez-change-status-command-class": {
+		"prefix": "ramez-change-status-command-class",
+		"body": [
+		  "using ErrorOr;",
+		  "using MediatR;",
+		  "",
+		  "namespace IncentivesApp.Application.${1:SingularEntityNameUpperCase}Operations.Commands;",
+		  "",
+		  "public record Change${1/(.)/${1:/capitalize}/}EnabledStatusCommand(Guid Id) : IRequest<ErrorOr<bool>>;"
+		],
+		"description": "ramez-change-status-command-class"
+	  },
+	  "ramez-change-status-command-handler-class": {
+		"prefix": "ramez-change-status-command-handler-class",
+		"body": [
+		  "",
+		  "using ErrorOr;",
+		  "using MediatR;",
+		  "using IncentivesApp.Domain.Common.Errors;",
+		  "using IncentivesApp.Application.Common.Interfaces.Services;",
+		  "using IncentivesApp.Application.Common.Interfaces.Presistence.Hr.Base;",
+		  "",
+		  "namespace IncentivesApp.Application.${1:SingularEntityNameUpperCase}Operations.Commands;",
+		  "",
+		  "public class Change${1/(.)/${1:/capitalize}/}EnabledStatusCommandHandler : IRequestHandler<Change${1/(.)/${1:/capitalize}/}EnabledStatusCommand, ErrorOr<bool>>",
+		  "{",
+		  "    private readonly IRepositoryWrapperHr _repoWrapper;",
+		  "    private readonly IDateTimeProvider _dateTimeProvider;",
+		  "    public Change${1/(.)/${1:/capitalize}/}EnabledStatusCommandHandler(IRepositoryWrapperHr repoWrapper, IDateTimeProvider dateTimeProvider)",
+		  "    {",
+		  "        _repoWrapper = repoWrapper;",
+		  "        _dateTimeProvider = dateTimeProvider;",
+		  "    }",
+		  "",
+		  "    public async Task<ErrorOr<bool>> Handle(Change${1/(.)/${1:/capitalize}/}EnabledStatusCommand command, CancellationToken cancellationToken)",
+		  "    {",
+		  "        var ${1/(.)/${1:/downcase}/} = await _repoWrapper.App${1/(.)/${1:/capitalize}/}Repo.GetFirstAsync(${1/(.)/${1:/downcase}/} => ${1/(.)/${1:/downcase}/}.Id == command.Id, cancellationToken);",
+		  "        if (${1/(.)/${1:/downcase}/} is null)",
+		  "            return Errors.Common.NotFound;",
+		  "",
+		  "        ${1/(.)/${1:/downcase}/}.IsDisabled = !${1/(.)/${1:/downcase}/}.IsDisabled;",
+		  "",
+		  "        var updated = await _repoWrapper.App${1/(.)/${1:/capitalize}/}Repo.UpdateAsync(${1/(.)/${1:/downcase}/}, command.Id);",
+		  "        await _repoWrapper.SaveAsync(cancellationToken);",
+		  "        return ${1/(.)/${1:/downcase}/}.IsDisabled;",
+		  "    }",
+		  "",
+		  "}"
+		],
+		"description": "ramez-change-status-command-handler-class"
+	  }
+
+
+}

@@ -1,0 +1,897 @@
+{
+	// Place your snippets for html here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	"mys-HeadLine": {
+		"prefix": "mys-HeadLine",
+		"body": [
+			"<!-- Head Line -->",
+			"<div class=\"form-row mt-2\" >",
+			  "\t<h6 class=\"horizontal-line text-left h5 px-1 mb-2\">",
+				"\t\t<span class=\"head-line-yellow pr-4\"><i class=\"${1:fa fa-cog}\"></i>&nbsp;{{'${2:Common.Data.View}' | translate }}</span>",
+			  "\t</h6>",
+			"</div>"
+		],
+		"description": "Head Line"
+	},
+	"mys-bool-isDisabled": {
+		"prefix": "mys-bool-isDisabled",
+		"body": [
+			"<div class=\"form-row mb-2\">" ,
+			"\t<label class=\"col-12 h6 mb-0 text-gold\">" , 
+			"\t\t<i class=\"fa fa-retweet\"></i>&nbsp;{{'Common.Form.AllowThisOption' | translate }}:" , 
+			"\t\t<span class=\"ml-3 h6 mb-0 text-dark\">[<i class=\"fa\" [ngClass]=\" ${1:entity}.isDisabled == false ? 'fa-check-circle text-success': 'fa-ban text-danger'\"></i> {{(${1:entity}.isDisabled ? 'Common.Form.No' : 'Common.Form.Yes') | translate}}]</span>" , 
+			"\t</label>" , 
+			"</div>\n"
+		],
+		"description": "show boolean data as readable information."
+	},
+	"mys-bool-isAvailable": {
+		"prefix": "mys-bool-isAvailable",
+		"body": [
+			"<div class=\"form-row mb-2\">" ,
+			"\t<label class=\"col-12 h6 mb-0 text-gold\">" , 
+			"\t\t<i class=\"fa fa-retweet\"></i>&nbsp;{{'Common.Form.AvailableStatus' | translate }}:" , 
+			"\t\t<span class=\"ml-3 h6 mb-0 text-dark\">[<i class=\"fa\" [ngClass]=\"{'fa-check-circle text-success': ${1:entity}.isActive == true, 'fa-ban text-danger': ${1:entity}.isactive == false}\"></i> {{(${1:entity}.isActive ? 'Common.Form.Available' : 'Common.Form.NotAvailable') | translate}}]</span>" , 
+			"\t</label>" , 
+			"</div>\n"
+		],
+		"description": "show boolean data as readable information."
+	},
+	"mys-text-note": {
+		"prefix": "mys-text-note",
+		"body": [
+			"<div class=\"form-row\">" , 
+			"\t<span class=\"d-flex align-items-center h6 mb-0 text-gold\"><i class=\"fa fa-wpforms\"></i>&nbsp;{{'Common.Form.Note' | translate }}</span>" , 
+			"\t<div class=\"col ml-3\"><hr class=\"mt-2 mb-0\"></div>" ,
+			"</div>\n" ,
+			"<div class=\"form-row mb-2\">" ,
+			"\t<div class=\"col-12\">" ,
+			"\t\t<ng-container *ngIf=\"${1:entity}?.note;else noTypeContent\">" ,
+			"\t\t\t<p class=\"mb-0 text-justify\" style=\"white-space: pre-line\">{{${1:entity}?.note}}</p>" ,
+			"\t\t</ng-container>" ,
+			"\t\t<ng-template #noTypeContent>" ,
+			"\t\t\t<div class=\"alert alert-warning text-center my-2\">" ,
+			"\t\t\t\t<strong>{{'Common.notFound.NoContent' | translate }}</strong>" ,
+			"\t\t\t</div>" ,
+			"\t\t</ng-template>" ,
+			"\t</div>" ,
+			"</div>\n"
+		],
+		"description": "show multi line text data as readable information."
+	},
+	"mys-entity-value": {
+		"prefix": "mys-entity-value",
+		"body": [
+			"<div class=\"form-row mb-2\">" ,
+			"\t<label class=\"h6 mb-0 text-info\">" ,
+			"\t\t<i class=\"fa fa-info-circle\"></i>&nbsp;{{'Common.Data.MoreInformations' | translate }}:" ,
+			"\t\t<span class=\"ml-3 h6 mb-0 text-dark\">[ {{${1:entity}?.id}} ]</span>" ,
+			"\t</label>" ,
+			"</div>\n"
+		],
+		"description": "show data as readable information."
+	},
+	
+	"mys-audit-details-template": {
+		"prefix": "mys-audit-details-template",
+		"body": [
+			"<app-audit-details-template [entityData]=\"${1:entity}\"></app-audit-details-template>\n"
+		],
+		"description": "show data as readable information."
+	},
+
+	"mys-large-icon-decoration": {
+		"prefix": "mys-large-icon-decoration",
+		"body": [
+			"<app-large-bg-icon-decoration [iconName]=\"'${1:fa-file-pdf-o}'\" [iconColor]=\"'${2:#c80000}'\" [iconSize]=\"'25rem'\"></app-large-bg-icon-decoration>\n"
+		],
+		"description": "show data as readable information."
+	},
+
+	"mys-table-header": {
+		"prefix": "mys-table-header",
+		"body": [
+			"<thead ngx-table-header class=\"table-primary\" [columns]=\"columns\" [query]=\"query\" (onSortChange)=\"getAll${1:EntityName}()\"></thead>\n"
+		],
+		"description": "show data as readable information."
+	},	
+	
+	"mys-table-not-found-any-record": {
+		"prefix": "mys-table-not-found-any-record",
+		"body": [
+			"<tr *ngIf=\"!${1:EntityRecords}?.length\" ngx-table-not-found-any-record [entityRecordName]=\"'${1:EntityRecords}.Singular'\" (onAddClicked)=\"show${1:EntityRecords}AddModal()\"></tr>\n"
+		],
+		"description": "show data as readable information."
+	},	
+	
+	"mys-table-pagination": {
+		"prefix": "mys-table-pagination",
+		"body": [
+			"<ngx-table-pagination [query]=\"query\" (onPageChange)=\"onPageChange($$event);\"></ngx-table-pagination>\n"
+		],
+		"description": "show data as readable information."
+	},	
+	
+	"mys-table-pagination-with-total": {
+		"prefix": "mys-table-pagination-with-total",
+		"body": [
+			"<ngx-table-pagination-with-total [query]=\"query\" (onPageChange)=\"onPageChange($$event);\"></ngx-table-pagination-with-total>\n"
+		],
+		"description": "show data as readable information."
+	},	
+
+	"mys-table-row-data-container": {
+		"prefix": "mys-table-row-data-container",
+		"body": [
+			"<td [attr.data-title]=\"columns[1]?.title\" class=\"align-middle text-left w-100 py-2\">", 
+			"\t<div>", 
+			"\t\t<span class=\"h6 my-1\">", 
+			"\t\t\t<a [ngClass]=\"${1:EntityName}.isSuspended ? 'text-danger' : 'text-info'\" [routerLink]=\"['/${1:EntityName}', +${1:EntityName}?.id]\"><i class=\"fa\" [ngClass]=\"${1:EntityName}.isSuspended ? 'fa-lock' : 'fa-info-circle'\"></i> {{ ${1:EntityName}.name }}</a>", 
+			"\t\t</span>", 
+			"\t\t<span class=\"badge badge-secondary px-2 ml-2\">{{${1:EntityName}.description}}</span>", 
+			"\t</div>", 
+			"\t<!---------- Begin Details ----------->", 
+			"\t<div class=\"row row-cols-1 row-cols-sm-2 row-cols-md-5 row-cols-xl-5 no-gutters row-eq-height bg-light mt-1\">", 
+			"", 
+			"\t\t<div row-data-container [icon]=\"'fa-calendar-o'\" [caption]=\"'Common.Data.UpdatedDate' | translate\" [value]=\"${1:EntityName}?.updatedDate| date:'yyyy/MM/dd' || '~~~~'\" [hideBorder]=\"true\"></div>", 
+			"", 
+			"\t</div>", 
+			"\t<!---------- Begin Details ----------->", 
+			"</td>"
+		],
+		"description": "show data as readable information."
+	},	
+
+	"mys-table-row-data-cell": {
+		"prefix": "mys-table-row-data-cell",
+		"body": [
+			"<div row-data-container [icon]=\"'fa-info-circle'\" [caption]=\"'Common.Data.Record' | translate\"",
+			"\t\t\t\t\t\t\t[value]=\"${1:EntityRecords}.${2:EntityPropertyName} || '~~~~'\" [hideInMobile]=\"true\"></div>\n"
+		],
+		"description": "show data as readable information."
+	},	
+	"mys-table-auto-number": {
+		"prefix": "mys-table-column-auto-number",
+		"body": [
+			"<td [attr.data-title]=\"'Common.Form.Id' | translate\" class=\"align-middle text-center py-0\">{{(query.pageSize * (query.pageNumber - 1)) + i + 1}}</td>\n"
+		],
+		"description": "show data as readable information."
+	},	
+	"mys-model-header-add-or-update": {
+		"prefix": "mys-model-header-add-or-update",
+		"body": [
+			"<h5 class=\"modal-title text-truncate\">", 
+			"\t<span *ngIf=\"!${1:EntityRecords}\"><i class=\"fa fa-plus\"></i>&nbsp;{{'${2:EntityRecords}.AddTitle' | translate }}</span>", 
+			"\t<span *ngIf=\"+${1:EntityRecords}?.id > 0\"><i class=\"fa fa-pencil-square-o\"></i>&nbsp;{{'${2:EntityRecords}.EditTitle' | translate }}</span>", 
+			"\t<div *ngIf=\"+${1:EntityRecords}?.id > 0\" class=\"mt-2 px-3 bg-primary text-light text-truncate\">", 
+			"\t\t<small><i class=\"fa fa-arrow-left\" aria-hidden=\"true\"></i> {{'sub-title'}}</small>", 
+			"\t</div>", 
+			"</h5>\n"
+		],
+		"description": "show data as readable information."
+	},		
+	"mys-corner-menu": {
+		"prefix": "mys-corner-menu",
+		"body": [
+			"<div class=\"dropdown float-left\"><a class=\"nav-link dropdown-toggle arrow-none\" data-toggle=\"dropdown\" data-display=\"static\" href=\"return;\" role=\"button\" aria-haspopup=\"false\" aria-expanded=\"false\"><i class=\"fa fa-ellipsis-v fa-1x text-muted\"></i></a>" ,
+			"\t<div class=\"dropdown-menu dropdown-menu-right\">" ,
+			"\t\t<button type=\"button\" class=\"dropdown-item px-2\" (click)=\"updateAlternativeItemsOrder()\">" ,
+			"\t\t\t<i class='text-success fa ' [ngClass]=\"isSubmitting ? 'fa-circle-o-notch fa-spin' : 'fa-sort-amount-desc'\"></i>" ,
+			"\t\t\t<span>&nbsp;{{(isSubmitting ? 'Common.Data.SendingData' : 'Common.CRUD.Reorder') | translate}}</span>" ,
+			"\t\t</button>" ,
+			"\t</div>" ,
+			"</div>\n"
+		],
+		"description": "show data as readable information."
+	},
+	"mys-tool-tip": {
+		"prefix": "mys-tool-tip",
+		"body": [
+			"<i class=\"fa fa-question-circle text-info\" placement=\"top\" ngbTooltip=\"{{'Items.TouchScreenTips' | translate }}\" [openDelay]=\"100\" [closeDelay]=\"1000\"></i>"
+		],
+		"description": "show data as tool tip to help user."
+	},	
+	"mys-last-update-table-column": {
+		"prefix": "mys-last-update-table-column",
+		"body": [
+			"<td class=\"align-middle text-center\" [title]=\"${1:entityName}.updatedDate| date:'yyyy/MM/dd hh:mm a'\">{{${1:entityName}.updatedDate| timeAgo}}</td>"
+		],
+		"description": "show data as tool tip to help user."
+	},
+	"mys-tabs": {
+		"prefix": "mys-tabs",
+		"body": [
+		  "  <!-------------------------- Begin Tabs  ------------------------------>",
+		  "  <ul ngbNav #nav=\"ngbNav\" [(activeId)]=\"activeNavTab\" class=\"nav nav-tabs\">",
+		  "",
+		  "    <li [ngbNavItem]=\"1\">",
+		  "      <a ngbNavLink class=\"px-2\"><i class=\"fa fa-users\" aria-hidden=\"true\"></i> {{'Councils.Edit' | translate:{'value':''} }}</a>",
+		  "      <ng-template ngbNavContent>",
+		  "        <ng-template [ngTemplateOutlet]=\"ModifyCouncilForm\"></ng-template>",
+		  "      </ng-template>",
+		  "    </li>",
+		  "",
+		  "    <li [ngbNavItem]=\"2\" *ngIf=\"councilForEdit?.userPermissions?.canMangeContentCoordinatorMembers\">",
+		  "      <a ngbNavLink class=\"px-2\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i> {{'Councils.Members.AddContentCoordinator' | translate}}</a>",
+		  "      <ng-template ngbNavContent>",
+		  "        <app-add-content-coordinator-member [councilOrCommitteeId]=\"councilForEdit.id\" [councilOrCommitteeDetails]=\"councilForEdit\" [showAsModal]=\"false\"></app-add-content-coordinator-member>",
+		  "      </ng-template>",
+		  "    </li>",
+		  "",
+		  "    <li [ngbNavItem]=\"3\" *ngIf=\"councilForEdit?.userPermissions?.canMangeApproverMembers\">",
+		  "      <a ngbNavLink class=\"px-2\"><i class=\"fa fa-thumbs-up\" aria-hidden=\"true\"></i> {{'Councils.AddApproverMember' | translate:{'value': ''} }}</a>",
+		  "      <ng-template ngbNavContent>",
+		  "        <app-add-approver-member *ngIf=\"councilForEdit?.userPermissions?.canMangeApproverMembers\" [councilOrCommitteeId]=\"councilForEdit.id\" [councilOrCommitteeDetails]=\"councilForEdit\" [showAsModal]=\"false\"></app-add-approver-member>",
+		  "      </ng-template>",
+		  "    </li>",
+		  "",
+		  "  </ul>",
+		  "  <div [ngbNavOutlet]=\"nav\"></div>",
+		  "  <!-------------------------- End Tabs  ------------------------------>"
+		],
+		"description": "mys-tabs"
+	  },
+
+
+
+
+
+
+
+
+	
+	"ramez-from-dialog-subtitle": {
+		"prefix": "ramez-from-dialog-subtitle",
+		"body": [
+			"<div *ngIf=\"(${2:SingularEntityNameDowncase}Info$ | async)  as ${2/(.)/${1:/downcase}/};\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">",
+			"  <h2 class=\"mb-0\">&nbsp;&nbsp;[<strong class=\"primary-color\">{{${2/(.)/${1:/downcase}/}?.data?.employee?.value || '~~~~~ ~~~~~ ~~~~~'}}</strong>]</h2>",
+			"</div>"
+		],
+		"description": "ramez-from-dialog-subtitle"
+	},
+	"ramez-form-html-component": {
+		"prefix": "ramez-form-html-component",
+		"body": [
+		  "<div fxLayout=\"row\" class=\"popup-top\" fxLayoutAlign=\"space-between center\">",
+		  "  <mat-icon fxFlex=\"none\" color=\"primary\">{{!isEdit ? 'add' : 'drive_file_rename_outline'}}</mat-icon>&nbsp;&nbsp;",
+		  "  <h2 fxFlex style=\"margin-bottom: 0px;\">",
+		  "    {{ !isEdit ?",
+		  "       (\"${1:PluralEntityNameCapitalize}.AddTitle\" | translate | titlecase)",
+		  "       : (\"${1/(.)/${1:/capitalize}/}.EditTitle\" | translate | titlecase)",
+		  "    }}",
+		  "  </h2>",
+		  "  <button fxFlex=\"none\" mat-icon-button color=\"warn\" type=\"button\" tabIndex=\"-1\" [mat-dialog-close]=\"false\">",
+		  "    <mat-icon>close</mat-icon>",
+		  "  </button>",
+		  "</div>",
+		  "<mat-divider></mat-divider>",
+		  "  <ng-container *ngIf=\"(${2:SingularEntityNameDowncase}Info$ | async) || !isEdit; else loading\">",
+		  "    <form class=\"form-wrapper\" (ngSubmit)=\"onSubmit()\" [formGroup]=\"${2/(.)/${1:/downcase}/}Form\" autocomplete=\"off\">",
+		  "      <mat-dialog-content class=\"mat-typography\">",
+		  "        <!--Main card-->",
+		  "        <mat-card class=\"mat-elevation-z0\">",
+		  "          <!--Form inner-->",
+		  "          <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "",
+		  "            <!-- Input fields here -->",
+		  "            ${3:InputFields}",
+		  "",
+		  "          </div>",
+		  "          <!--Form inner//-->",
+		  "        </mat-card>",
+		  "        <!--Main card-->",
+		  "      </mat-dialog-content>",
+		  "",
+		  "      <!--Buttons-->",
+		  "      <mat-dialog-actions>",
+		  "        <div fxLayout=\"row\" fxFlex=\"100\" fxLayoutGap=\"5px\" fxLayoutAlign=\"start none\">",
+		  "          <div fxFlex=\"50\">",
+		  "            <button type=\"button\" class=\"material-full-width popup-action-btn\" mat-stroked-button color=\"warn\" [mat-dialog-close]=\"false\">",
+		  "              <mat-icon>block</mat-icon>",
+		  "              {{ \"Common.CRUD.Cancel\" | translate | uppercase }}",
+		  "            </button>",
+		  "          </div>",
+		  "          <div fxFlex=\"50\">",
+		  "            <button class=\"material-full-width large-button\" mat-flat-button color=\"primary\" type=\"submit\" [disabled]=\"isSubmitted\">",
+		  "              <mat-icon class=\"mat-18\">{{ isSubmitted ? \"pending\" : \"save\"}}</mat-icon>",
+		  "              {{ (isSubmitted ? 'Common.Data.SendingData' : 'Common.CRUD.Save') | translate}}",
+		  "              <mat-progress-bar *ngIf=\"isSubmitted\" [mode]=\"'indeterminate'\" color=\"accent\"> </mat-progress-bar>",
+		  "            </button>",
+		  "          </div>",
+		  "        </div>",
+		  "      </mat-dialog-actions>",
+		  "    </form>",
+		  "  </ng-container>",
+		  "",
+		  "  <ng-template #loading>",
+		  "    <!-- <mat-progress-bar [mode]=\"'indeterminate'\" color=\"warn\"></mat-progress-bar>-->",
+		  "    <div fxLayout=\"row\" fxLayoutAlign=\"space-between start\" fxLayoutAlign.lt-lg=\"colum\" fxLayoutGap=\"20px\" fxLayoutAlign.lt-lg=\"start stretch\">",
+		  "      <!--Left-->",
+		  "      <div fxFlex=\"50%\" fxLayoutGap=\"10px\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\">",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "        <app-shimmer-loading [width]=\"'70px'\" height=\"20px\"></app-shimmer-loading>",
+		  "      </div>",
+		  "      <!--Left //-->",
+		  "      <!--Right-->",
+		  "      <div fxFlex=\"50%\" fxLayoutGap=\"10px\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\">",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "        <app-shimmer-loading [width]=\"'100%'\" height=\"40px\"></app-shimmer-loading>",
+		  "      </div>",
+		  "      <!--Right //-->",
+		  "    </div>",
+		  "  </ng-template>"
+		],
+		"description": "ramez-form-html-component"
+	  },
+	  "ramez-sort-by-language": {
+		"prefix": "ramez-sort-by-language",
+		"body": [
+		  "[mat-sort-header]=\"dir == 'rtl' ? '${1:SingularEntityNameDowncase}Ar' : '${1:SingularEntityNameDowncase}'\""
+		],
+		"description": "ramez-sort-by-language"
+	  },
+	  "ramez-boolean-value-as-an-icon": {
+		"prefix": "ramez-boolean-value-as-an-icon",
+		"body": [
+		  "<mat-icon [color]=\"${1:SingularEntityNameDowncase}.${2:PropertyNameDowncase} == true ? 'primary' : 'warn'\">{{${1:SingularEntityNameDowncase}.${2:PropertyNameDowncase} == true ? 'check_circle' : 'cancel' }}</mat-icon>"
+		],
+		"description": "ramez-boolean-value-as-an-icon"
+	  },
+	  "ramez-input-language-suffix": {
+		"prefix": "ramez-input-language-suffix",
+		"body": [
+		  "<span matSuffix class=\"lang-code\">{{'ar' | translate }}</span>"
+		],
+		"description": "ramez-input-language-suffix"
+	  },
+	  "ramez-input-characters-left": {
+		"prefix": "ramez-input-characters-left",
+		"body": [
+		  "<mat-hint align=\"end\">{{formValidator['${1:propertyNameDowncase}'].value?.length}} / ${2:maxLength}</mat-hint>"
+		],
+		"description": "ramez-input-characters-left"
+	  },
+	  "ramez-inputs-row-flex-layout": {
+		"prefix": "ramez-inputs-row-flex-layout",
+		"body": [
+		  "<div fxLayout=\"row\" fxLayoutAlign=\"space-between start\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "  <div fxFlex>",
+		  "    <!-- Input 1 -->",
+		  "  </div>",
+		  "  <div fxFlex>",
+		  "    <!-- Input 1 -->",
+		  "  </div>",
+		  "</div>"
+		],
+		"description": "ramez-inputs-row-flex-layout"
+	  },
+	  "ramez-grid-preview": {
+		"prefix": "ramez-grid-preview",
+		"body": [
+		  "<!--Top-->",
+		  "<mat-card class=\"mat-elevation-z0\">",
+		  "  <mat-card-content>",
+		  "    <div fxLayout=\"column\" fxLayoutGap=\"5px\" fxLayoutAlign=\"start stretch\">",
+		  "      <div fxLayout=\"row\" class=\"popup-top\" fxLayoutAlign=\"space-between center\">",
+		  "            <mat-icon fxFlex=\"none\" color=\"primary\">{{!isEdit ? 'add' : 'drive_file_rename_outline'}}</mat-icon>",
+		  "            <h2 fxFlex class=\"dialog-title\" mat-dialog-title style=\"margin-bottom: 0px;\">",
+		  "              {{('${2:EntityRecords}.EditTitle' | translate | titlecase)}}",
+		  "            </h2>",
+		  "            <button fxFlex=\"none\" mat-icon-button color=\"warn\" type=\"button\" tabIndex=\"-1\" [mat-dialog-close]=\"false\">",
+		  "              <mat-icon>close</mat-icon>",
+		  "            </button>",
+		  "      </div>",
+		  "      <mat-divider></mat-divider>",
+		  "      <!--Details Wrap-->",
+		  "      <div fxFlex=\"100%\">",
+		  "            <!--Grid-->",
+		  "            <div fxLayout=\"row wrap\" fxLayoutGap=\"15px\">",
+		  "",
+		  "              <!--col-->",
+		  "              <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <strong>{{ \"From Date\" | translate | uppercase }}</strong>",
+		  "                <div>",
+		  "                  <span class=\"ltr\"> data 3</span>",
+		  "                </div>",
+		  "                <strong>{{ \"From Time\" | translate | uppercase }}</strong>",
+		  "                <div>",
+		  "                  <span class=\"ltr\">Data 4</span>",
+		  "                </div>",
+		  "              </div>",
+		  "              <!--col //-->",
+		  "",
+		  "              <!--col-->",
+		  "              <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <strong>{{ \"To Date\" | translate | uppercase }}</strong>",
+		  "                <div>",
+		  "                  <span class=\"ltr\">Data 6</span>",
+		  "                </div>",
+		  "                <strong>{{ \"To Time\" | translate | uppercase }}</strong>",
+		  "                <div>",
+		  "                  <span class=\"ltr\">Data 7</span>",
+		  "                </div>",
+		  "              </div>",
+		  "              <!--col //-->",
+		  "",
+		  "              <!--col-->",
+		  "              <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <strong>{{ \"Updated On\" | translate | uppercase }}</strong>",
+		  "                <div>",
+		  "                  <span class=\"ltr\">Data 8</span>",
+		  "                </div>",
+		  "              </div>",
+		  "              <!--col //-->",
+		  "              <!--col-->",
+		  "              <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <strong>{{ \"Current Status\" | translate | uppercase }}</strong>",
+		  "                <div fxLayout=\"row\" fxLayoutGap=\"5px\" fxLayoutAlign=\"start center\">",
+		  "                  <strong> Data 9</strong>",
+		  "                </div>",
+		  "              </div>",
+		  "              <!--col //-->",
+		  "              <!--col-->",
+		  "              <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <strong>{{ \"Reason\" | translate | uppercase }}</strong>",
+		  "                    Data 10",
+		  "              </div>",
+		  "              <!--col //-->",
+		  "            </div>",
+		  "            <!--Grid //-->",
+		  "      </div>",
+		  "      <!--Details Wrap //-->",
+		  "    </div>",
+		  "  </mat-card-content>",
+		  "</mat-card>",
+		  "<!--Top //-->"
+		],
+		"description": "ramez-grid-preview"
+	  },
+	  "ramez-section-title": {
+		"prefix": "ramez-section-title",
+		"body": [
+		  "<div class=\"section-bg-color\">",
+		  "  <h3 fxLayout=\"row\" fxLayoutAlign=\"start center\">",
+		  "    <mat-icon color=\"primary\">badge</mat-icon><strong>&nbsp;&nbsp;{{'${1:PluralEntityName}.TheSingular' | translate }}</strong>",
+		  "  </h3>",
+		  "  <mat-divider color=\"primary\"></mat-divider>",
+		  "</div>"
+		],
+		"description": "ramez-section-title"
+	  },
+	  "ramez-small-icon": {
+		"prefix": "ramez-icon-sm",
+		"body": [
+		  "<mat-icon color=\"warn\" class=\"icon-sm\">warning</mat-icon>"
+		],
+		"description": "ramez-icon-sm"
+	  },
+	  "ramez-float-label-with-data": {
+		"prefix": "ramez-form-data-and-fixed-values",
+		"body": [
+		  "<div fxFlex>",
+		  "  <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">calendar_month</mat-icon> {{'EmployeeMasters.ModifyDate' | translate }}</mat-label>",
+		  "  <div class=\"mat-body\">",
+		  "    <h3><strong>{{(employee?.data?.modifyDate | date:'yyyy/MM/dd hh:mm a') || '~~~~~~~~'}}</strong></h3>",
+		  "  </div>",
+		  "</div>"
+		],
+		"description": "ramez-float-label-with-data"
+	  },
+	  "ramez-table-expand-row": {
+		"prefix": "ramez-table-expand-row",
+		"body": [
+		  "<ng-container matColumnDef=\"actions1\">",
+		  "  <mat-header-cell *matHeaderCellDef>{{ \"Actions\" | translate }}</mat-header-cell>",
+		  "  <mat-cell *matCellDef=\"let ${1:SingularEntityNameDowncase}\">",
+		  "    <button mat-mini-fab color=\"primary\" (click)=\"${1:SingularEntityNameDowncase}.isExpanded = !${1:SingularEntityNameDowncase}.isExpanded\" class=\"mat-elevation-z0\">",
+		  "      <mat-icon >{{${1:SingularEntityNameDowncase}.isExpanded ? 'compress' : 'expand_content'}}</mat-icon>",
+		  "    </button>",
+		  "  </mat-cell>",
+		  "</ng-container>",
+		  "",
+		  "",
+		  "<!-- 1) add ( multiTemplateDataRows ) to  mat-table -->",
+		  "<!-- 2) add isExpanded property to row dataType -->",
+		  "<mat-row *matRowDef=\"let ${1:SingularEntityNameDowncase}; columns: displayedColumns\"",
+		  "    class=\"table-element-row\" [class.table-expanded-row]=\"${1:SingularEntityNameDowncase}.isExpanded\"",
+		  "    (click)=\"${1:SingularEntityNameDowncase}.isExpanded = !${1:SingularEntityNameDowncase}.isExpanded\">",
+		  "</mat-row>",
+		  "<mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"table-detail-row\"></mat-row>",
+		  "<!--  begin expanded detail -->",
+		  "<ng-container matColumnDef=\"expandedDetail\">",
+		  "  <mat-cell *matCellDef=\"let ${1:SingularEntityNameDowncase}\" [attr.colspan]=\"displayedColumns.length\">",
+		  "      <div fxFlex class=\"table-element-detail\" [@detailExpand]=\"${1:SingularEntityNameDowncase}.isExpanded ? 'expanded' : 'collapsed'\">",
+		  "        <div fxLayout=\"row\" fxLayoutAlign=\"stretch\" fxLayoutGap=\"5px\">",
+		  "          <div fxFlex=\"none\">",
+		  "            <mat-icon color=\"primary\" class=\"mat-18\"> {{ dir == 'rtl' ? 'subdirectory_arrow_left' :  'subdirectory_arrow_right'}}</mat-icon>",
+		  "          </div>",
+		  "          <div class=\"expanded-contents\" fxFlex=\"100\" fxLayout=\"column\" fxLayoutAlign=\" stretch\" fxLayoutGap=\"10px\">",
+		  "",
+		  "            <div fxFlex=\"100\" fxFlexFill fxLayout=\"row wrap\" fxLayoutAlign=\"space-between stretch\" fxLayoutGap=\"10px grid\">",
+		  "              <div fxFlex=\"50\" fxLayout=\"row\" fxLayoutAlign=\"space-between stretch\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "                <div fxFlex=\"50\">",
+		  "                  <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">123</mat-icon> {{'Common.Form.Id' | translate }}</mat-label>",
+		  "                  <div class=\"mat-body\">",
+		  "                    <strong>{{${1:SingularEntityNameDowncase}.recno || '~~~~~~~~'}}</strong>",
+		  "                  </div>",
+		  "                </div>",
+		  "                <div fxFlex=\"50\">",
+		  "                  <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">info</mat-icon> {{'Common.Form.Name' | translate }}</mat-label>",
+		  "                  <div class=\"mat-body\">",
+		  "                    <strong>{{${1:SingularEntityNameDowncase}.name || '~~~~~~~~'}}</strong>",
+		  "                  </div>",
+		  "                </div>",
+		  "              </div>",
+		  "              <div fxFlex=\"50\" fxLayout=\"row\" fxLayoutAlign=\"space-between stretch\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "                <div fxFlex=\"50\">",
+		  "                  <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">calendar_month</mat-icon> {{'EmpDocuments.IssueDate' | translate }}</mat-label>",
+		  "                  <div class=\"mat-body\">",
+		  "                    <strong>{{(${1:SingularEntityNameDowncase}.issueDate | date:'yyyy/MM/dd') || '~~~~~~~~'}}</strong>",
+		  "                  </div>",
+		  "                </div>",
+		  "                <div fxFlex=\"50\">",
+		  "                  <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">calendar_month</mat-icon> {{'EmpDocuments.ExpiryDate' | translate }}</mat-label>",
+		  "                  <div class=\"mat-body\">",
+		  "                    <strong>{{(${1:SingularEntityNameDowncase}.expiryDate | date:'yyyy/MM/dd') || '~~~~~~~~'}}</strong>",
+		  "                  </div>",
+		  "                </div>",
+		  "              </div>",
+		  "            </div>",
+		  "",
+		  "          </div>",
+		  "        </div>",
+		  "      </div>",
+		  "  </mat-cell>",
+		  "</ng-container>",
+		  "<!--  end expanded detail -->"
+		],
+		"description": "ramez-table-expand-row",
+	  }, 
+	  "ramez-filters-form": {
+		"prefix": "ramez-filters-form",
+		"body": [
+		  "<mat-card [formGroup]=\"form\" class=\"mat-elevation-z0\" fxFlex=\"100\">",
+		  "  <mat-card-content >",
+		  "    <div fxLayout=\"column\" fxLayoutGap=\"0px\" fxLayoutAlign=\"start stretch\">",
+		  "      <!--Horizontal input-->",
+		  "",
+		  "    </div>",
+		  "",
+		  "  <!--Main col //-->",
+		  "  <!-- {{ form.value | json }} -->",
+		  "  </mat-card-content>",
+		  "  <mat-divider></mat-divider>",
+		  "  <mat-card-footer>",
+		  "    <mat-card-actions>",
+		  "      <!--Horizontal button-->",
+		  "      <div fxLayoutAlign=\"end center\">",
+		  "",
+		  "        <div fxLayout=\"row\" fxLayoutAlign=\"center center\" fxLayoutGap=\"10\">",
+		  "          <button type=\"reset\" (click)=\"resetForm()\" mat-stroked-button>",
+		  "            {{ \"Clear\" | translate | uppercase }}",
+		  "          </button>",
+		  "          <button type=\"button\" color=\"primary\" mat-flat-button (click)=\"applyFilterClose()\">",
+		  "            {{ \"Apply & Close\" | translate | uppercase }}",
+		  "          </button>",
+		  "        </div>",
+		  "",
+		  "      </div>",
+		  "      <!--Horizontal input //-->",
+		  "    </mat-card-actions>",
+		  "  </mat-card-footer>",
+		  "</mat-card>",
+		  ""
+		],
+		"description": "ramez-filters-form"
+	  },
+	  "ramez-filters-toolbar-menu": {
+		"prefix": "ramez-filters-toolbar-menu",
+		"body": [
+		  "    <div fxFlex=\"30\" fxFlex.lt-md=\"100\">",
+		  "      <div fxLayout=\"row\" fxLayoutGap=\"10px\" fxLayoutAlign=\"none center\">",
+		  "        <mat-form-field appearance=\"legacy\" class=\"search-form-field material-full-width\" floatLabel=\"never\">",
+		  "          <input matInput placeholder=\"{{'Search' | translate }}\" [formControl]=\"searchKeyCtrl\" />",
+		  "          <button mat-button matSuffix mat-icon-button aria-label=\"Clear\" *ngIf=\"searchKeyCtrl.value\" (click)=\"onSearchClear()\">",
+		  "            <mat-icon color=\"warn\">close</mat-icon>",
+		  "          </button>",
+		  "        </mat-form-field>",
+		  "        <button mat-icon-button [matMenuTriggerFor]=\"filterMenu\" [matBadge]=\"filterItemCount\" matBadgePosition=\"before\" matBadgeColor=\"accent\">",
+		  "          <mat-icon [ngClass]=\" !filterItemCount ? 'material-icons-outlined' : 'material-icons'\">filter_alt</mat-icon>",
+		  "        </button>",
+		  "      </div>",
+		  "    </div>",
+		  "  </div>",
+		  "  <!-- end table toolbar & search options -->",
+		  "",
+		  "  <!-- filter-->",
+		  "  <mat-menu #filterMenu=\"matMenu\">",
+		  "    <ng-template matMenuContent>",
+		  "      <div (click)=\"$$event.stopPropagation()\" class=\"filter-wrapper\">",
+		  "        <ng-container [formGroup]=\"formFilter\">",
+		  "          <app-employee-master-filters (filterCount)=\"getFilterCount($$event)\" (applyFilter)=\"applyMenuFilter($$event)\"",
+		  "                                       formControlName=\"filterValues\"></app-employee-master-filters>",
+		  "        </ng-container>",
+		  "      </div>",
+		  "    </ng-template>",
+		  "  </mat-menu>",
+		  "  <!-- filter //-->"
+		],
+		"description": "ramez-filters-toolbar-menu"
+	  }, 
+	  "ramez-tab-group": {
+		"prefix": "ramez-tab-group",
+		"body": [
+		  "<!-- begin tabs group -->",
+		  "<mat-tab-group>",
+		  "",
+		  "  <mat-tab>",
+		  "    <ng-template mat-tab-label><mat-icon color=\"primary\">home</mat-icon>&nbsp;&nbsp;{{'Common.Form.Name' | translate }}</ng-template>",
+		  "    <div style=\"margin-top: 1rem;\"><ng-template [ngTemplateOutlet]=\"employeeMainPage\"></ng-template></div>",
+		  "  </mat-tab>",
+		  "",
+		  "  <mat-tab>",
+		  "    <ng-template mat-tab-label><mat-icon color=\"primary\">tty</mat-icon>&nbsp;&nbsp;{{'Common.Form.Name' | translate }}</ng-template>",
+		  "    <ng-template matTabContent>",
+		  "      <div style=\"margin-top: 1rem;\">",
+		  "        <!-- ng-component Here  -->",
+		  "      </div>",
+		  "    </ng-template>",
+		  "  </mat-tab>",
+		  "",
+		  "</mat-tab-group>",
+		  "<!-- end tabs group -->"
+		],
+		"description": "ramez-tab-group"
+	  },
+	  "ramez-resolver-form": {
+		"prefix": "ramez-resolver-form-component",
+		"body": [
+		  "<ng-container *ngIf=\"(${2:SingularEntityNameDowncase}Info$ | async) as ${2/(.)/${1:/downcase}/}Data; else loading\">",
+		  "  <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "",
+		  "    <!-- begin header form -->",
+		  "    <mat-accordion #mainAccordion=\"matAccordion\" class=\"mat-accordion-primary\" displayMode=\"default\" [multi]=\"true\" [hideToggle]=\"false\">",
+		  "",
+		  "      <mat-expansion-panel [hideToggle]=\"false\" class=\"mat-elevation-z0\"  [expanded]=\"true\">",
+		  "        <mat-expansion-panel-header fxLayout=\"row\" fxLayoutAlign=\"space-between center\">",
+		  "          <mat-panel-title fxLayout=\"row\" fxLayoutAlign=\"start center\">",
+		  "            <mat-icon fxFlex=\"none\" color=\"primary\">{{!isEdit ? 'add' : 'drive_file_rename_outline'}}</mat-icon>",
+		  "            <h2 fxFlex class=\"dialog-title\" mat-dialog-title style=\"margin-bottom: 0px;\">",
+		  "              {{ !isEdit ?",
+		  "                 (\"${1:PluralEntityName}.AddTitle\" | translate | titlecase)",
+		  "                 : (\"${1/(.)/${1:/capitalize}/}.EditTitle\" | translate | titlecase)",
+		  "              }}",
+		  "            </h2>",
+		  "          </mat-panel-title>",
+		  "        </mat-expansion-panel-header>",
+		  "        <div style=\"margin-top: 1rem;\">",
+		  "          <ng-template [ngTemplateOutlet]=\"${2/(.)/${1:/downcase}/}Template\"",
+		  "                       [ngTemplateOutletContext]=\"{${2/(.)/${1:/downcase}/}Data:${2/(.)/${1:/downcase}/}Data}\">",
+		  "          </ng-template>",
+		  "        </div>",
+		  "      </mat-expansion-panel>",
+		  "",
+		  "    </mat-accordion>",
+		  "    <!-- end header form -->",
+		  "",
+		  "    <!-- begin another contents -->",
+		  "      <app-training-transaction-list></app-training-transaction-list>",
+		  "    <!-- end another contents -->",
+		  "",
+		  "  </div>",
+		  "</ng-container>",
+		  "<!--main wrap //-->",
+		  "",
+		  "",
+		  "<!-- begin page header template -->",
+		  "<ng-template #${2/(.)/${1:/downcase}/}Template [formGroup]=\"${2/(.)/${1:/downcase}/}Form\" let-data='${2/(.)/${1:/downcase}/}Data'>",
+		  "  <!--Form inner-->",
+		  "  <div fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "    <!-- Input fields here -->",
+		  "    ${3:InputFields}",
+		  "",
+		  "",
+		  "  <!-- begin submit buttons -->",
+		  "  <mat-divider></mat-divider>",
+		  "  <div fxLayout=\"row\" fxFlex=\"100\" fxLayoutGap=\"5px\" fxLayoutAlign=\"start none\">",
+		  "    <div fxFlex=\"70\"></div>",
+		  "    <div fxFlex=\"30\">",
+		  "      <button class=\"material-full-width\" *hasClaim=\"['Permissions.${2/(.)/${1:/capitalize}/}.Edit']\" mat-flat-button color=\"primary\" (click)=\"onSubmit()\" [disabled]=\"isSubmitted\">",
+		  "        <mat-icon>{{ isSubmitted ? \"pending\" : \"save\"}}</mat-icon>",
+		  "        {{ (isSubmitted ? 'Common.Data.SendingData' : 'Common.CRUD.Save') | translate}}",
+		  "        <mat-progress-bar *ngIf=\"isSubmitted\" [mode]=\"'indeterminate'\" color=\"accent\"> </mat-progress-bar>",
+		  "      </button>",
+		  "    </div>",
+		  "  </div>",
+		  "  <!-- end submit buttons -->",
+		  "",
+		  "  </div>",
+		  "  <!--Form inner //-->",
+		  "",
+		  "</ng-template>",
+		  "<!-- end page header template -->",
+		  "",
+		  "<ng-template #loading>",
+		  "  <div fxLayoutGap=\"10px\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\">",
+		  "    <app-shimmer-loading [width]=\"'100%'\" height=\"20px\"></app-shimmer-loading>",
+		  "    <app-shimmer-loading [width]=\"'90%'\" height=\"20px\"></app-shimmer-loading>",
+		  "    <app-shimmer-loading [width]=\"'75%'\" height=\"20px\"></app-shimmer-loading>",
+		  "    <app-shimmer-loading [width]=\"'70px'\" height=\"20px\"></app-shimmer-loading>",
+		  "  </div>",
+		  "</ng-template>",
+		  ""
+		],
+		"description": "ramez-resolver-form"
+	  }, 
+	  "ramez-split-main-table-cell": {
+		"prefix": "ramez-split-main-table-cell",
+		"body": [
+		  "            <!-- begin split main table cell -->",
+		  "            <div fxFill fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "",
+		  "              <div class=\"align-left\" fxFlex=\"100\" fxLayout=\"row\" fxLayoutAlign=\"start center\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "                <div fxLayout=\"row\" fxLayoutAlign=\"start center\">",
+		  "                  <mat-icon color=\"primary\" class=\"mat-18 icon-md\">account_circle</mat-icon>",
+		  "                  <strong class=\"primary-color\">&nbsp;&nbsp;{{${2:SingularEntityNameDowncase}?.name || ${2/(.)/${1:/downcase}/}?.code}}</strong>",
+		  "                </div>",
+		  "                <span class=\"mat-body\">&nbsp;&nbsp;(<strong>{{${2/(.)/${1:/downcase}/}?.description || '~~~~~~'}}</strong>)</span>",
+		  "              </div>",
+		  "",
+		  "              <div fxFlex=\"100\">",
+		  "",
+		  "                <div class=\"bg-gray align-left\" fxLayout=\"row\" fxLayoutAlign=\"space-between start\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "",
+		  "                  <div fxFlex class=\"split-border\">",
+		  "                    <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">date_range</mat-icon> {{'${1:PluralEntityName}.FirstProperty' | translate }}</mat-label>",
+		  "                    <div class=\"mat-body\">",
+		  "                      <h3 class=\"mb-0\"><strong>{{${2/(.)/${1:/downcase}/}.firstProperty}}</strong></h3>",
+		  "                    </div>",
+		  "                  </div>",
+		  "",
+		  "                  <div fxFlex class=\"split-border\">",
+		  "                    <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">business_center</mat-icon> {{'${1/(.)/${1:/capitalize}/}.SecondProperty' | translate }}</mat-label>",
+		  "                    <div class=\"mat-body\">",
+		  "                      <h3 class=\"mb-0\"><strong>{{${2/(.)/${1:/downcase}/}?.secondProperty || ${2/(.)/${1:/downcase}/}.secondPropertyCode}}</strong></h3>",
+		  "                    </div>",
+		  "                  </div>",
+		  "",
+		  "                  <div fxFlex class=\"split-border\">",
+		  "                    <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">calendar_month</mat-icon> {{'${1/(.)/${1:/capitalize}/}.ThirdProperty' | translate }}</mat-label>",
+		  "                    <div class=\"mat-body\">",
+		  "                      <h3 class=\"mb-0\"><strong>{{${2/(.)/${1:/downcase}/}.thirdPropertyDate| toLocalDate: 'YYYY-MMM-DD'}}</strong></h3>",
+		  "                    </div>",
+		  "                  </div>",
+		  "",
+		  "                  <div fxFlex class=\"split-border\">",
+		  "                    <mat-label class=\"mat-caption\"><mat-icon class=\"icon-sm\">av_timer</mat-icon> {{'${1/(.)/${1:/capitalize}/}.FourthProperty' | translate }}</mat-label>",
+		  "                    <div class=\"mat-body\">",
+		  "                      <h3 class=\"mb-0\"><strong>{{${2/(.)/${1:/downcase}/}.fourthProperty | number:'1.1-1'}}</strong></h3>",
+		  "                    </div>",
+		  "                  </div>",
+		  "",
+		  "                </div>",
+		  "              </div>",
+		  "",
+		  "              <div *ngIf=\"${2/(.)/${1:/downcase}/}.remark\" fxFlex=\"100\" class=\"note mat-body-1\">",
+		  "                <strong><mat-icon class=\"mat-18 icon-sm\">sticky_note_2</mat-icon>  {{'Common.Form.Remarks' | translate }}:</strong>",
+		  "                {{${2/(.)/${1:/downcase}/}.remark}}",
+		  "              </div>",
+		  "",
+		  "            </div>",
+		  "            <!-- end split main table cell -->"
+		],
+		"description": "ramez-split-main-table-cell"
+	  },
+	  "ramez-table-toolbar-with-title": {
+		"prefix": "ramez-table-toolbar-with-title",
+		"body": [
+		  "<!-- begin table toolbar & search options -->",
+		  "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\" fxLayoutGap=\"20px\" class=\"page-top-wrapper\"",
+		  "     fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap.lt-md=\"5px\">",
+		  "",
+		  "  <div fxFlex fxFlex.lt-md=\"100\" fxLayout=\"row\" fxLayoutAlign=\"start center\">",
+		  "    <mat-icon color=\"primary\">badge</mat-icon>",
+		  "    <h2>&nbsp;&nbsp;{{'TrainingTransactions.PageTitle' | translate }}</h2>",
+		  "  </div>",
+		  "",
+		  "   <div fxFlex=\"none\" fxFlex.lt-md=\"100\">",
+		  "",
+		  "     <button mat-stroked-button *hasClaim=\"['Permissions.TrainingMaster.Create']\"  (click)=\"addTrainingTransaction()\">",
+		  "        <mat-icon color=\"primary\">add</mat-icon>",
+		  "        <span> {{ \"Common.CRUD.Add\" | translate | uppercase }}</span>",
+		  "     </button>",
+		  "",
+		  "     <button mat-stroked-button (click)=\"loadPage()\">",
+		  "        <mat-icon color=\"primary\">autorenew</mat-icon>",
+		  "        <span> {{ \"Common.Data.Refresh\" | translate | uppercase }}</span>",
+		  "     </button>",
+		  "",
+		  "   </div>",
+		  "  <div fxFlex=\"1px\" fxFlex.lt-md=\"100\"></div>",
+		  "</div>",
+		  "<!-- end table toolbar & search options -->"
+		],
+		"description": "ramez-table-toolbar-with-title"
+	  },
+	  "ramez-fieldset": {
+		"prefix": "ramez-fieldset",
+		"body": [
+		  "<!------------ begin group ------------>",
+		  "<fieldset>",
+		  "  <legend><h3 class=\"primary-color mb-0\"><strong>{{'Common.Form.Options' | translate }}&nbsp;&nbsp;</strong></h3></legend>",
+		  "  <div fxLayout=\"row\" fxLayoutAlign=\"space-between start\" fxLayout.lt-md=\"column\" fxLayoutAlign.lt-md=\"start stretch\" fxLayoutGap=\"10px\">",
+		  "    <!-- begin column 1 -->",
+		  "    <div fxFlex=\"50\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "      <!-- begin row 1 -->",
+		  "      <div fxFlex>",
+		  "",
+		  "      </div>",
+		  "      <!-- end row 1 -->",
+		  "      <!-- begin row 2 -->",
+		  "      <div fxFlex>",
+		  "",
+		  "      </div>",
+		  "      <!-- end row 2 -->",
+		  "    </div>",
+		  "    <!-- end column 1 -->",
+		  "    <!-- begin column 2 -->",
+		  "    <div fxFlex=\"50\" fxLayout=\"column\" fxLayoutAlign=\"start stretch\" fxLayoutGap=\"5px\">",
+		  "      <!-- begin row 1 -->",
+		  "      <div fxFlex>",
+		  "",
+		  "      </div>",
+		  "      <!-- end row 1 -->",
+		  "      <!-- begin row 2 -->",
+		  "      <div fxFlex>",
+		  "",
+		  "      </div>",
+		  "      <!-- end row 2 -->",
+		  "    </div>",
+		  "    <!-- end column 2 -->",
+		  "  </div>",
+		  "</fieldset>",
+		  "<!------------ end group ------------->"
+		],
+		"description": "ramez-fieldset"
+	  },
+	  "ramez-change-status-submit-button": {
+		"prefix": "ramez-change-status-submit-button",
+		"body": [
+		  "<ng-container *hasClaim=\"['Permissions.${1:SingularEntityName}.Edit']\" >",
+		  " <button mat-menu-item (click)=\"changeActiveStatus(${1/(.)/${1:/downcase}/}, j + paginator.pageIndex * paginator.pageSize)\">",
+		  "    <mat-icon [color]=\"${1/(.)/${1:/downcase}/}.${2:PluralColumnNameDownCase} == true ? 'primary' : 'warn'\" class=\"material-icons-outlined\">{{${1/(.)/${1:/downcase}/}.${2/(.)/${1:/downcase}/} == true ? 'check_circle' : 'block' }}</mat-icon>",
+		  "    <span>{{(${1/(.)/${1:/downcase}/}.${2/(.)/${1:/downcase}/} == true ? 'Common.CRUD.Enable' : 'Common.CRUD.Disable') | translate}}</span>",
+		  " </button>",
+		  "</ng-container>"
+		],
+		"description": "ramez-change-status-submit-button"
+	  },
+	  "ramez-change-status-column": {
+		"prefix": "ramez-change-status-column",
+		"body": [
+		  "<ng-container matColumnDef=\"${2:ColumnNameDownCase}\">",
+		  " <mat-header-cell *matHeaderCellDef mat-sort-header=\"${2/(.)/${1:/downcase}/}\">{{'Common.CRUD.Enabled' | translate }}</mat-header-cell>",
+		  " <mat-cell *matCellDef=\"let ${1:SingularEntityName}\" [attr.data-label]=\"'Common.CRUD.Enabled' | translate \">",
+		  "   <mat-icon [color]=\"${1/(.)/${1:/downcase}/}.${2/(.)/${1:/downcase}/} == false ? 'primary' : 'warn'\"",
+		  "             [title]=\"(${1/(.)/${1:/downcase}/}.${2/(.)/${1:/downcase}/} == false ? 'Common.CRUD.Enabled' : 'Common.CRUD.Disabled') | translate\" >",
+		  "             {{${1/(.)/${1:/downcase}/}.${2/(.)/${1:/downcase}/} == false ? 'check_circle' : 'cancel' }}</mat-icon>",
+		  " </mat-cell>",
+		  "</ng-container>"
+		],
+		"description": "ramez-change-status-column"
+	  },
+	  "ramez-dropdownlist-selection-change": {
+		"prefix": "ramez-dropdownlist-selection-change",
+		"body": [
+		  "(onSelectionChange)=\"on${1:SingularPropertyNameUppercase}SelectionChanged(item, \\$event)\""
+		],
+		"description": "ramez-dropdownlist-selection-change"
+	  }
+
+}
